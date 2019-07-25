@@ -34,27 +34,32 @@ bot.on('message', data => {
 
 // Respons to Data
 function handleMessage(message) {
-    if(message.includes(' hi') || message.includes(' hello') || message.includes(' namaste')) {
-        answerGreetings();
-    } else if (message.includes(' weather around me')) {
+    const greetMsg = `Hello there, Wanna know more about weather around?`;
+    const greetMsg2 = `I am doing well, I hope you are doing great too`;
+    const askMeQuestions = `Just ask me "weather around me", "weather in and city" to know more`;
+
+    if (message.includes(' hi') || message.includes(' hello') || message.includes(' namaste')) {
+        answerGreetings(greetMsg);
+        answerGreetings(askMeQuestions);
+    } else if (message.includes(' how are you') || message.includes(' how you doing')) {
+        answerGreetings(greetMsg2);
+        answerGreetings(askMeQuestions);
+    }
+    else if (message.includes(' weather around me')) {
         weatherAroundMe();
-    } else if (message.includes(' yomama')) {
-        yoMamaJoke();
-    } else if (message.includes(' random')) {
-        randomJoke();
     } else if (message.includes(' help')) {
         runHelp();
     }
 }
 
 // Tell a Chuck Norris Joke
-function answerGreetings() {
+function answerGreetings(message) {
     const params = {
-        icon_emoji: '::pray::'
+        icon_emoji: ':pray:'
     };
 
     bot.postMessageToChannel('slackbotchannel',
-        `Hello there, Wanna know more about weather around? Just ask me "weather around me", "weather in and city"`,
+        message,
         params);
 }
 
