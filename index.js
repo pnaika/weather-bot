@@ -3,7 +3,7 @@ const axios = require('axios');
 const _ = require('lodash');
 
 const bot = new SlackBot({
-    token: 'xoxb-233891438262-704837343828-JLe1vlkc0MnIoRk8XCCZbDFh',
+    token: 'xxxxxx',
     name: 'weather-bot'
 });
 
@@ -37,6 +37,7 @@ function handleMessage(message) {
     const greetMsg = `Hello there, Wanna know more about weather around?`;
     const greetMsg2 = `I am doing well, I hope you are doing great too`;
     const askMeQuestions = `Just ask me "weather around me", "weather in and city" to know more`;
+    const askMeQuestions1 = `No worries, please ask me questions anytime, Happy to help :)`;
 
     if (message.includes(' hi') || message.includes(' hello') || message.includes(' namaste')) {
         answerGreetings(greetMsg);
@@ -44,6 +45,9 @@ function handleMessage(message) {
     } else if (message.includes(' how are you') || message.includes(' how you doing')) {
         answerGreetings(greetMsg2);
         answerGreetings(askMeQuestions);
+    }
+    else if (message.includes(' thank you')) {
+        answerGreetings(askMeQuestions1);
     }
     else if (message.includes(' weather around me')) {
         weatherAroundMe();
@@ -70,7 +74,9 @@ function weatherAroundMe() {
         icon_emoji: ':laughing:'
     };
 
-    bot.postMessageToChannel('slackbotchannel', `Its 25 C`, params);
+    bot.postMessageToChannel('slackbotchannel',
+        `Its 100 above Prashanth, Arizona is hot like a Oven always`,
+        params);
 }
 
 // Show Help Text
